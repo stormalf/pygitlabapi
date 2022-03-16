@@ -1,0 +1,6 @@
+{
+    "name": "Celestial",
+    "initialize_with_readme": "True",
+    "description": "A collection of celestial objects",
+    "visibility": "public"
+}
