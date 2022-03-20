@@ -68,3 +68,5 @@ Updating an existing project
 pygitlabapi.py
 
 1.0.0 initial version
+
+1.0.1 managing http error codes

@@ -41,7 +41,7 @@ PUT /projects/{project_id} : update a project (project_id)
 
 '''
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 
 ALLOWED_METHODS = ["DELETE", "GET", "POST", "PUT"]
 URL = "https://gitlab.com/api/v4" 
@@ -127,12 +127,13 @@ class gitlabApi():
                     response = requests.put(apiurl, headers=header, data=contents)
                     contents.close()
             elif self.method == "DELETE":
-                #raise Exception("DELETE not implemented yet")
                 response = requests.delete(apiurl, headers=header)  
         except requests.exceptions.RequestException as e:  
             raise SystemExit(e)   
         if response.status_code == NO_CONTENT:
             response = "{}"
+        elif response.status_code != 200:
+            response = jsonload('{"message": "Error : ' + str(response.status_code) + ' ' + response.reason + '"}')            
         else:            
             response = response.json()
         return response
